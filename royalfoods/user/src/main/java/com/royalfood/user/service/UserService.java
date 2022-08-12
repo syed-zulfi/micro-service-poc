@@ -21,6 +21,7 @@ public class UserService {
     final private String HOST = "localhost";
     final private String DEPT_PORT = "1010";
     final private String DEPT_URL = "/api/department";
+    final private String DEPART_MICRO_SERVICE = "DEPARTMENT-MICRO-SERVICE";
 
 
     public UserDto createUser(UserDto userDto) {
@@ -46,7 +47,7 @@ public class UserService {
                             ,email));
         });
         UserDto<DepartmentVo> userDto = userAtomic.get();
-        String departmentService = String.format("http://%s:%s%s/byNames",HOST,DEPT_PORT,DEPT_URL);
+        String departmentService = String.format("http://%S%s/byNames",DEPART_MICRO_SERVICE,DEPT_URL);
         List<DepartmentVo> departments = restTemplate
                 .postForObject(departmentService,userDto.getDepartments(),
                         List.class);

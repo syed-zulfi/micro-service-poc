@@ -6,6 +6,8 @@ server:
 spring:
   banner:
     location: classpath:/static/dept-banner.txt
+  application:
+    name: DEPARTMENT-MICRO-SERVICE
 
   datasource:
     url: jdbc:mysql://localhost:3306/royal-foods-dept?createDatabaseIfNotExist=true
@@ -22,5 +24,15 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: update
+
+eureka:
+    client:
+      register-with-eureka: true
+      fetch-registry: true
+      service-url:
+        defaultZone: http://localhost:1000/eureka/
+    instance:
+        hostname: localhost
+
 
 
